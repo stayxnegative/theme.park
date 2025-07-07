@@ -10,6 +10,12 @@ if [ "${TP_HOTIO}" = true ]; then
     APP_FILEPATH='/config/config/qBittorrent.conf'
 fi
 
+# Validate that the config file exist
+if [[ ! -f "${APP_FILEPATH}" ]]; then
+    echo "qBittorrent config file not found at ${APP_FILEPATH}. Please ensure qBittorrent is configured correctly."
+    exit 0
+fi
+
 # Backup config
 if [[ ! -f "${APP_FILEPATH}.bak" ]]; then
     echo "Creating qBittorrent.conf backup in /config."
